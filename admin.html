@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Language Translator</title>
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>🔧 Admin Dashboard</h1>
+            <p>Manage translations and user contributions</p>
+            <button id="logout-btn" onclick="logout()">Logout</button>
+        </header>
+
+        <!-- Login Screen -->
+        <div id="login-screen" class="login-screen">
+            <div class="login-form">
+                <h2>Admin Login</h2>
+                <div class="form-group">
+                    <label for="admin-username">Username:</label>
+                    <input type="text" id="admin-username" placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Password:</label>
+                    <input type="password" id="admin-password" placeholder="Enter password">
+                </div>
+                <button onclick="adminLogin()">Login</button>
+                <p class="login-hint">Default: admin / admin123</p>
+            </div>
+        </div>
+
+        <!-- Main Dashboard -->
+        <div id="dashboard" class="dashboard" style="display: none;">
+            <nav class="admin-nav">
+                <button class="nav-btn active" onclick="showSection('verification')">Verification Queue</button>
+                <button class="nav-btn" onclick="showSection('verified')">Verified Database</button>
+                <button class="nav-btn" onclick="showSection('users')">User Management</button>
+                <button class="nav-btn" onclick="showSection('files')">File Management</button>
+                <button class="nav-btn" onclick="showSection('stats')">Statistics</button>
+            </nav>
+
+            <!-- Verification Queue Section -->
+            <section id="verification-section" class="admin-section active">
+                <h2>Pending Translation Approvals</h2>
+                <div id="pending-queue" class="pending-queue">
+                    <!-- Pending translations will be populated here -->
+                </div>
+            </section>
+
+            <!-- Verified Database Section -->
+            <section id="verified-section" class="admin-section">
+                <h2>Verified Translations</h2>
+                <div class="search-bar">
+                    <input type="text" id="verified-search" placeholder="Search translations...">
+                    <select id="verified-lang-filter">
+                        <option value="">All Languages</option>
+                        <option value="en">English</option>
+                        <option value="kn">Kannada</option>
+                        <option value="hi">Hindi</option>
+                        <option value="te">Telugu</option>
+                        <option value="ta">Tamil</option>
+                        <option value="ml">Malayalam</option>
+                    </select>
+                </div>
+                <div id="verified-list" class="verified-list">
+                    <!-- Verified translations will be populated here -->
+                </div>
+            </section>
+
+            <!-- TRAINING DATASET UPLOAD (Excel) 
+            <section id="training-dataset-section" class="card">
+                <h2>Upload Training Dataset (Excel)</h2>
+                <p>
+                    Upload an Excel file with columns:
+                    <strong>SourceLang, TargetLang, SourceText, TargetText</strong>.
+                </p>
+
+                <input        
+                    type="file"
+                    id="datasetUploadInput"
+                    accept=".xlsx,.xls"
+                    onchange="handleDatasetUpload(event)"
+                />
+
+                <h3>Training Dataset (from Excel)</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Source Lang</th>
+                            <th>Target Lang</th>
+                            <th>Source Text</th>
+                            <th>Target Text</th>
+                        </tr>
+                    </thead>
+                    <tbody id="datasetTableBody"></tbody>
+                </table>
+            </section>-->
+
+
+            <!-- User Management Section -->
+            <section id="users-section" class="admin-section">
+                <h2>User Points & Rewards</h2>
+                <div id="users-list" class="users-list">
+                    <!-- User points will be populated here -->
+                </div>
+            </section>
+
+            <!-- File Management Section -->
+            <section id="files-section" class="admin-section">
+                <h2>File Translation History</h2>
+                <div id="files-list" class="files-list">
+                    <!-- File history will be populated here -->
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section id="stats-section" class="admin-section">
+                <h2>System Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Translations</h3>
+                        <div id="total-translations" class="stat-number">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pending Approvals</h3>
+                        <div id="pending-count" class="stat-number">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Users</h3>
+                        <div id="active-users" class="stat-number">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Points Awarded</h3>
+                        <div id="total-points" class="stat-number">0</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Excel parser library (SheetJS) -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+<!-- Your existing admin JS -->
+<script src="admin-script.js"></script>
+</body>
+</html>

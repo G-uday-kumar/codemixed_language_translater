@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Translator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="title-section">
+                    <h1>🌐 Language Translator</h1>
+                    <p>Translate between multiple languages with ease</p>
+                </div>
+                <div class="header-controls">
+                    <div id="user-points-display" class="user-points">Points: 0</div>
+                    <button id="dark-mode-toggle" class="dark-mode-btn">🌙</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="translator-section">
+            <div class="language-selection">
+                <div class="language-selector">
+                    <label for="source-lang">From:</label>
+                    <select id="source-lang">
+                        <option value="en">English</option>
+                        <option value="kn">Kannada</option>
+                        <option value="hi">Hindi</option>
+                        <option value="te">Telugu</option>
+                        <option value="ta">Tamil</option>
+                        <option value="ml">Malayalam</option>
+                    </select>
+                </div>
+
+                <div class="swap-btn">
+                    <button id="swap-languages" onclick="swapLanguages()">
+                        >
+                    </button>
+                </div>
+
+                <div class="language-selector">
+                    <label for="target-lang">To:</label>
+                    <select id="target-lang">
+                        <option value="en">English</option>
+                        <option value="kn">Kannada</option>
+                        <option value="hi">Hindi</option>
+                        <option value="te">Telugu</option>
+                        <option value="ta">Tamil</option>
+                        <option value="ml">Malayalam</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="translation-area">
+                <div class="input-section">
+                    <textarea
+                        id="input-text"
+                        placeholder="Enter text to translate..."
+                        rows="4"
+                    ></textarea>
+                    <div class="input-actions">
+                        <button id="clear-input" onclick="clearInput()">Clear</button>
+                        <button id="voice-input" onclick="startVoiceInput()">🎤</button>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <div id="output-text" class="output-display">
+                        Translation will appear here...
+                    </div>
+                    <div id="phonetic-display" class="phonetic-display"></div>
+                    <div class="output-actions">
+                        <button id="copy-output" onclick="copyOutput()">Copy</button>
+                        <button id="voice-output" onclick="speakOutput()">🔊</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="translate-btn" onclick="translateText()">
+                    Translate
+                </button>
+                <button id="file-upload-btn" class="file-upload-btn">
+                    📁 Upload File
+                </button>
+                <input type="file" id="file-input" accept=".txt" style="display: none;">
+                <button id="add-translation" onclick="showAddTranslationModal()">
+                    Add Translation
+                </button>
+            </div>
+        </div>
+
+        <div class="examples-section">
+            <h3>Example Translations</h3>
+            <div class="examples-grid" id="examples-grid">
+                <!-- Examples will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Translation Modal -->
+    <div id="add-translation-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddTranslationModal()">&times;</span>
+            <h2>Add New Translation</h2>
+            <div class="form-group">
+                <label for="new-source-text">Source Text:</label>
+                <textarea id="new-source-text" rows="3" placeholder="Enter source text..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="new-target-text">Translated Text:</label>
+                <textarea id="new-target-text" rows="3" placeholder="Enter translated text..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="new-source-lang">Source Language:</label>
+                <select id="new-source-lang">
+                    <option value="en">English</option>
+                    <option value="kn">Kannada</option>
+                    <option value="hi">Hindi</option>
+                    <option value="te">Telugu</option>
+                    <option value="ta">Tamil</option>
+                    <option value="ml">Malayalam</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="new-target-lang">Target Language:</label>
+                <select id="new-target-lang">
+                    <option value="en">English</option>
+                    <option value="kn">Kannada</option>
+                    <option value="hi">Hindi</option>
+                    <option value="te">Telugu</option>
+                    <option value="ta">Tamil</option>
+                    <option value="ml">Malayalam</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button onclick="addNewTranslation()">Add Translation</button>
+                <button onclick="closeAddTranslationModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
