@@ -495,3 +495,25 @@ body {
         min-width: auto;
     }
 }
+/* Dataset Table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #e9ecef;
+    padding: 10px;
+    text-align: left;
+}
+
+.data-table th {
+    background: #667eea;
+    color: white;
+}
+
+.data-table tr:nth-child(even) {
+    background: #f8f9fa;
+}
