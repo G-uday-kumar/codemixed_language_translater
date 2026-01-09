@@ -71,38 +71,44 @@
             </section>
 
             <!-- TRAINING DATASET UPLOAD (Excel) -->
-            <section id="dataset-section" class="admin-section">
-    <h2>Upload Training Dataset (Excel)</h2>
+<!-- Training Dataset Section -->
+<section id="dataset-section" class="admin-section">
+    <h2>Training Dataset Management</h2>
 
-    <p class="dataset-info">
-        Upload an Excel file with columns:
-        <strong>SourceLang, TargetLang, SourceText, TargetText</strong>
+    <p class="dataset-description">
+        Upload an Excel file containing the columns:
+        <strong>SourceLang, TargetLang, SourceText, TargetText</strong>.
     </p>
 
-    <div class="dataset-upload-box">
-        <input
-            type="file"
-            id="datasetUploadInput"
-            accept=".xlsx,.xls"
-            onchange="handleDatasetUpload(event)"
-        />
-    </div>
+    <div class="dataset-card">
+        <div class="dataset-upload">
+            <label class="dataset-label">Upload Training Dataset (Excel)</label>
+            <input
+                type="file"
+                id="datasetUploadInput"
+                accept=".xlsx,.xls"
+                onchange="handleDatasetUpload(event)"
+            />
+        </div>
 
-    <h3 class="dataset-subtitle">Training Dataset (from Excel)</h3>
+        <hr class="dataset-divider" />
 
-    <div class="dataset-table-wrapper">
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Source Lang</th>
-                    <th>Target Lang</th>
-                    <th>Source Text</th>
-                    <th>Target Text</th>
-                </tr>
-            </thead>
-            <tbody id="datasetTableBody"></tbody>
-        </table>
+        <h3 class="dataset-subtitle">Training Dataset (from Excel)</h3>
+
+        <div class="dataset-table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Source Lang</th>
+                        <th>Target Lang</th>
+                        <th>Source Text</th>
+                        <th>Target Text</th>
+                    </tr>
+                </thead>
+                <tbody id="datasetTableBody"></tbody>
+            </table>
+        </div>
     </div>
 </section>
 
