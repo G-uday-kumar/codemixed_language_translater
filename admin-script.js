@@ -394,3 +394,63 @@ function showNotification(message, type = 'info') {
         notification.remove();
     }, 3000);
 }
+// ✅ Handle Excel dataset upload (Admin)
+function handleDatasetUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const rows = XLSX.utils.sheet_to_json(sheet);
+
+        if (!rows.length) {
+            showNotification('Excel file is empty!', 'error');
+            return;
+        }
+
+        const verifiedData = JSON.parse(localStorage.getItem('verifiedDatabase') || '{}');
+        const tableBody = document.getElementById('datasetTableBody');
+        tableBody.innerHTML = '';
+
+        rows.forEach((row, index) => {
+            const { SourceLang, TargetLang, SourceText, TargetText } = row;
+
+            if (!SourceLang || !TargetLang || !SourceText || !TargetText) return;
+
+            // Forward mapping
+            if (!verifiedData[SourceLang]) verifiedData[SourceLang] = {};
+            if (!verifiedData[SourceLang][TargetLang]) verifiedData[SourceLang][TargetLang] = {};
+            verifiedData[SourceLang][TargetLang][SourceText] = TargetText;
+
+            // Reverse mapping
+            if (!verifiedData[TargetLang]) verifiedData[TargetLang] = {};
+            if (!verifiedData[TargetLang][SourceLang]) verifiedData[TargetLang][SourceLang] = {};
+            verifiedData[TargetLang][SourceLang][TargetText] = SourceText;
+
+            // Display in table
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${SourceLang}</td>
+                <td>${TargetLang}</td>
+                <td>${SourceText}</td>
+                <td>${TargetText}</td>
+            `;
+            tableBody.appendChild(tr);
+        });
+
+        localStorage.setItem('verifiedDatabase', JSON.stringify(verifiedData));
+
+        loadVerifiedDatabase();
+        updateStatistics();
+        showNotification('Dataset uploaded and merged successfully!', 'success');
+    };
+
+    reader.readAsArrayBuffer(file);
+}
