@@ -39,6 +39,7 @@
                 <button class="nav-btn" onclick="showSection('users')">User Management</button>
                 <button class="nav-btn" onclick="showSection('files')">File Management</button>
                 <button class="nav-btn" onclick="showSection('stats')">Statistics</button>
+                <button class="nav-btn" onclick="showSection('dataset')">Training Dataset</button>
             </nav>
 
             <!-- Verification Queue Section -->
@@ -70,34 +71,41 @@
             </section>
 
             <!-- TRAINING DATASET UPLOAD (Excel) -->
-            <section id="training-dataset-section" class="card">
-                <h2>Upload Training Dataset (Excel)</h2>
-                <p>
-                    Upload an Excel file with columns:
-                    <strong>SourceLang, TargetLang, SourceText, TargetText</strong>.
-                </p>
+            <section id="dataset-section" class="admin-section">
+    <h2>Upload Training Dataset (Excel)</h2>
 
-                <input        
-                    type="file"
-                    id="datasetUploadInput"
-                    accept=".xlsx,.xls"
-                    onchange="handleDatasetUpload(event)"
-                />
+    <p class="dataset-info">
+        Upload an Excel file with columns:
+        <strong>SourceLang, TargetLang, SourceText, TargetText</strong>
+    </p>
 
-                <h3>Training Dataset (from Excel)</h3>
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Source Lang</th>
-                            <th>Target Lang</th>
-                            <th>Source Text</th>
-                            <th>Target Text</th>
-                        </tr>
-                    </thead>
-                    <tbody id="datasetTableBody"></tbody>
-                </table>
-            </section>
+    <div class="dataset-upload-box">
+        <input
+            type="file"
+            id="datasetUploadInput"
+            accept=".xlsx,.xls"
+            onchange="handleDatasetUpload(event)"
+        />
+    </div>
+
+    <h3 class="dataset-subtitle">Training Dataset (from Excel)</h3>
+
+    <div class="dataset-table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Source Lang</th>
+                    <th>Target Lang</th>
+                    <th>Source Text</th>
+                    <th>Target Text</th>
+                </tr>
+            </thead>
+            <tbody id="datasetTableBody"></tbody>
+        </table>
+    </div>
+</section>
+
 
 
             <!-- User Management Section -->
