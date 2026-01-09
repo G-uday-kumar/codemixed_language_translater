@@ -87,6 +87,10 @@ function loadSectionData(section) {
         case 'stats':
             updateStatistics();
             break;
+            case 'dataset':
+    // nothing dynamic yet
+                break;
+
     }
 }
 
